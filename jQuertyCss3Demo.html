@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>jQuerty and CSS3</title>
+                
+        <!-- CSS
+        ================================================== -->
+		
+        <style>
+			/* Cube CSS */
+			div:nth-child(1){
+				width: 175px;
+				height: 175px;
+				background: black;
+				align: center;
+				float: left;
+				text-align: center;
+				margin: 20px 40px;
+				line-height: 1000%;
+				color: white;
+				background-image:
+				repeating-linear-gradient(
+					black,
+					gray,
+					black
+				);
+			}
+			
+			/* Triangle CSS */
+			div:nth-child(2){
+				width: 0px;
+				height: 0px;
+				border-left: 120px solid transparent;
+				border-right: 120px solid transparent;
+				border-bottom: 120px solid #f4041c;
+				align: center;
+				white-space: nowrap;
+				float: left;
+				margin: 650px 30px;
+				margin-bottom: 0px;
+				line-height: 1300%;
+				color: white;
+				text-indent: -45px;
+			}
+			
+			/* Circle CSS */
+			div:nth-child(3){
+				width: 175px;
+				height: 175px;
+				background: green;
+				-moz-border-radius: 100px;
+				-webkit-border-radius: 100px;
+				border-radius: 100px;
+				align: center;
+				float: left;
+				margin: 300px 20px;
+				color: white;
+				line-height: 1000%;
+				word-wrap: break-word;
+				background-image:
+				radial-gradient(
+					#27ad18,
+					green,
+					darkgreen
+				);
+			}
+		</style>
+        
+        <!-- JAVASCRIPT
+        ================================================== -->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script>
+			$(window).load(function(){
+				
+				function cube(){
+					$( "div > div:contains('cube')").animate({
+						'marginTop' : "600px",
+						'marginBottom' : "0px"
+					}, 1000).animate({
+						'marginTop' : "20px"}, 1000);
+				}
+				
+				function triangle(){
+					$( "div > div:contains('triangle')").animate({
+						'marginTop' : "20px",
+						'marginBottom' : "0px"
+					}, 1000).animate({
+						'marginTop' : "650px"}, 1000);
+				}
+				
+				function circle(){
+					$( "div > div:contains('circle')").animate({  borderSpacing: 360 }, {
+						step: function(now,fx) {
+							$(this).css('-webkit-transform','rotate('+now+'deg)'); 
+							$(this).css('-moz-transform','rotate('+now+'deg)');
+							$(this).css('transform','rotate('+now+'deg)');
+						},
+						duration:1200
+					},'linear');
+					
+					$( "div > div:contains('circle')").animate({  borderSpacing: 0 }, {
+						step: function(now,fx) {
+							$(this).css('-webkit-transform','rotate('+now+'deg)'); 
+							$(this).css('-moz-transform','rotate('+now+'deg)');
+							$(this).css('transform','rotate('+now+'deg)');
+						},
+						duration:0
+					},'linear');
+				}
+				
+				var counter = 0;
+				var i = setInterval(function(){
+					cube();
+					triangle();
+					circle();
+					counter++;
+					
+					if(counter === 5){
+						clearInterval(i);
+					}
+				}, 2700);
+				
+			});
+		</script>
+		
+    </head>
+    <body>
+
+		<!-- NO CHANGES BELOW THIS LINE
+		================================================== -->
+        
+        <hr /><br />
+        
+        <div style="width:800px;height:800px;border: medium #999999 solid">
+            <div>This is a cube</div>
+            <div>This is a triangle</div>
+            <div>This is a big, green circle</div>
+        </div>
+        
+        <br /><hr />
+
+		<strong>Rules: </strong><br />
+		- The HTML cannot be modified in any way<br />
+		- No 3rd party JavaScript or jQuery plugins can be used for the animation portion<br />
+		- Compatibility: IE, Firefox, Chrome<br />
+
+	</body>
+</html>
